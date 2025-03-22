@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+#group{
+    display: none;
+}
 </style>
 </head>
 <body class="w3-light-grey">
@@ -54,10 +57,198 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:70px;">
-
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-file-text"></i> Equipment Analysis</b></h5>
+    </header>
+    <div style="margin-left:15px">
+        <label for="r_all" class="w3-quarter"><input type="radio" name="type" id="r_all" checked onclick="showGroupTable(false)"> <b>All equipment</b> </label>
+        <label for="r_group" class="w3-quarter"><input type="radio" name="type" id="r_group" onclick="showGroupTable(true)"> <b>Group by Type</b></label>
+        <hr>
+        <div id="all">
+            <table class="w3-table-all w3-hoverable" id="equipmentTable">
+                <thead>
+                <tr class="w3-purple">
+                    <th class="w3-hover-grey" onclick="sortTable(0, 'equipmentTable')">Equipment Type</th>
+                    <th class="w3-hover-grey" onclick="sortTable(1, 'equipmentTable')">Device ID</th>
+                    <th class="w3-hover-grey" onclick="sortTable(2, 'equipmentTable')">Movement Rate (%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Bed</td>
+                    <td>8001011234567890</td>
+                    <td>45</td>
+                </tr>
+                <tr>
+                    <td>Bed</td>
+                    <td>8001010987654321</td>
+                    <td>32</td>
+                </tr>
+                <tr>
+                    <td>Bed</td>
+                    <td>8001015648613234</td>
+                    <td>28</td>
+                </tr>
+                <tr>
+                    <td>Bed</td>
+                    <td>8001011234568461</td>
+                    <td>16</td>
+                </tr>
+                <tr>
+                    <td>Bed</td>
+                    <td>8001010987633621</td>
+                    <td>58</td>
+                </tr>
+                <tr>
+                    <td>Bed</td>
+                    <td>8001015678217254</td>
+                    <td>37</td>
+                </tr>
+                <!-- Wheelchairs -->
+                <tr>
+                    <td>Wheelchair</td>
+                    <td>8001011564845156</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>Wheelchair</td>
+                    <td>8001014516541123</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td>Wheelchair</td>
+                    <td>8001011564156156</td>
+                    <td>82</td>
+                </tr>
+                <tr>
+                    <td>Wheelchair</td>
+                    <td>8001019265465485</td>
+                    <td>85</td>
+                </tr>
+            
+                <!-- Intravenous Stands -->
+                <tr>
+                    <td>Intravenous Stand</td>
+                    <td>8001012345678901</td>
+                    <td>39</td>
+                </tr>
+                <tr>
+                    <td>Intravenous Stand</td>
+                    <td>80010191645168005</td>
+                    <td>55</td>
+                </tr>
+                <tr>
+                    <td>Intravenous Stand</td>
+                    <td>80010149815644508</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                    <td>Intravenous Stand</td>
+                    <td>8001013456789012</td>
+                    <td>58</td>
+                </tr>
+                <tr>
+                    <td>Intravenous Stand</td>
+                    <td>8001014567890123</td>
+                    <td>77</td>
+                </tr>
+                <!-- Monitors -->
+                <tr>
+                    <td>Monitor</td>
+                    <td>8001015678901234</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Monitor</td>
+                    <td>8001016789012345</td>
+                    <td>48</td>
+                </tr>
+                <tr>
+                    <td>Monitor</td>
+                    <td>8001017890123456</td>
+                    <td>30</td>
+                </tr>
+            
+                <!-- Defibrillators -->
+                <tr>
+                    <td>Defibrillator</td>
+                    <td>8001018901234567</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>Defibrillator</td>
+                    <td>8001019012345678</td>
+                    <td>65</td>
+                </tr>
+                </tbody>
+            </table>      
+        </div>
+        <div id="group">
+            <table class="w3-table-all w3-hoverable" id="groupTable">
+                <thead>
+                    <tr class="w3-purple">
+                        <th class="w3-hover-grey" onclick="sortTable(0, 'groupTable')">Equipment Type</th>
+                        <th class="w3-hover-grey" onclick="sortTable(1, 'groupTable')">Average Movement Rate (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bed</td>
+                        <td>36.0</td>
+                    </tr>
+                    <tr>
+                        <td>Wheelchair</td>
+                        <td>79.0</td>
+                    </tr>
+                    <tr>
+                        <td>Intravenous Stand</td>
+                        <td>57.8</td>
+                    </tr>
+                    <tr>
+                        <td>Monitor</td>
+                        <td>34.3</td>
+                    </tr>
+                    <tr>
+                        <td>Defibrillator</td>
+                        <td>40.0</td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>    
+    </div>
+    <br>
 </div>
 
 <script>
+function sortTable(columnIndex, tableName) {
+    const table = document.getElementById(tableName);
+    const rows = Array.from(table.rows).slice(1); // Skip header row
+    let ascending = table.getAttribute("data-sort-ascending") === "true";
+    table.setAttribute("data-sort-ascending", !ascending);
+
+    rows.sort((rowA, rowB) => {
+    const cellA = rowA.cells[columnIndex].textContent.trim();
+    const cellB = rowB.cells[columnIndex].textContent.trim();
+
+    if (columnIndex === 2) { // Sorting for Movement Rate as a number
+        return ascending ? cellA - cellB : cellB - cellA;
+    } else { // Sorting for text content
+        return ascending 
+        ? cellA.localeCompare(cellB) 
+        : cellB.localeCompare(cellA);
+    }
+    });
+
+    rows.forEach(row => table.tBodies[0].appendChild(row)); // Reorder rows
+}
+
+function showGroupTable(showGroup){
+    const all = document.getElementById("all");
+    const group = document.getElementById("group");
+    group.style.display = showGroup ? "block" : "none";
+    all.style.display = showGroup ? "none" : "block";
+}
+
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 
