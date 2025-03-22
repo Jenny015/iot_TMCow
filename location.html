@@ -9,7 +9,84 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif;}
-.floor-image {width: 100%; height: 400px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; color: #777; font-size: 24px;}
+.floor-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-image: url("img/hospital-floor-plan.png");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+.moving-circle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 50%;
+}
+.red-circle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+/* Animation for gray circles */
+@keyframes moveCircle1 {
+  0% { top: 10%; left: 10%; }
+  25% { top: 50%; left: 20%; }
+  50% { top: 70%; left: 60%; }
+  75% { top: 30%; left: 80%; }
+  100% { top: 10%; left: 10%; }
+}
+@keyframes moveCircle2 {
+  0% { top: 20%; left: 30%; }
+  25% { top: 60%; left: 40%; }
+  50% { top: 80%; left: 70%; }
+  75% { top: 40%; left: 50%; }
+  100% { top: 20%; left: 30%; }
+}
+@keyframes moveCircle3 {
+  0% { top: 30%; left: 20%; }
+  25% { top: 50%; left: 70%; }
+  50% { top: 60%; left: 40%; }
+  75% { top: 20%; left: 10%; }
+  100% { top: 30%; left: 20%; }
+}
+@keyframes moveCircle4 {
+  0% { top: 40%; left: 40%; }
+  25% { top: 80%; left: 20%; }
+  50% { top: 50%; left: 80%; }
+  75% { top: 10%; left: 60%; }
+  100% { top: 40%; left: 40%; }
+}
+@keyframes moveCircle5 {
+  0% { top: 50%; left: 50%; }
+  25% { top: 70%; left: 80%; }
+  50% { top: 20%; left: 30%; }
+  75% { top: 10%; left: 10%; }
+  100% { top: 50%; left: 50%; }
+}
+
+/* Animation for red circle */
+@keyframes moveRedCircle {
+  0% { top: 15%; left: 15%; }
+  25% { top: 55%; left: 25%; }
+  50% { top: 75%; left: 65%; }
+  75% { top: 35%; left: 85%; }
+  100% { top: 15%; left: 15%; }
+}
+
+/* Assign animations */
+#circle1 { animation: moveCircle1 280s linear infinite; }
+#circle2 { animation: moveCircle2 290s linear infinite; }
+#circle3 { animation: moveCircle3 250s linear infinite; }
+#circle4 { animation: moveCircle4 300s linear infinite; }
+#circle5 { animation: moveCircle5 250s linear infinite; }
+#redCircle { animation: moveRedCircle 260s linear infinite; }
 </style>
 </head>
 <body class="w3-light-grey">
@@ -52,33 +129,42 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif;}
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:70px;">
     <header class="w3-container" style="padding-top:22px">
         <h5><b><i class="fa fa-map-o"></i> Hospital Floor Plan</b></h5>
       </header>
       <hr>
-    <div class="w3-row">
+      <div class="w3-row">
         <div class="w3-bar-block w3-col" style="width:10%">
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L8</a><br><br>
-          <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-level-up fa-fw"></i> L7</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L6</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L5</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L4</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L3</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L2</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L1</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> LG</a>
-          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> UG</a>
-
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L8</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-level-up fa-fw"></i> L7</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L6</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L5</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L4</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L3</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L2</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L1</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> LG</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> UG</a>
+  
         </div>
+    <div class="w3-row">
         <div class="w3-container w3-col" style="width:80%">
-              <!-- Floor Content -->
-              <div id="floorContent" class="w3-container">
+            <!-- Floor Content -->
+            <div id="floorContent" class="w3-container">
                 <div class="floor-image" id="floorImagePlaceholder">
-                    <img src="img/hospital-floor-plan.png" width="100%">
+                    <!-- Moving circles -->
+                    <div class="moving-circle" id="circle1"></div>
+                    <div class="moving-circle" id="circle2"></div>
+                    <div class="moving-circle" id="circle3"></div>
+                    <div class="moving-circle" id="circle4"></div>
+                    <div class="moving-circle" id="circle5"></div>
+                    <!-- Red circle -->
+                    <div class="red-circle" id="redCircle"></div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>
@@ -96,12 +182,6 @@ function w3_open() {
 function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
-}
-
-// Function to display selected floor details dynamically
-function showFloor(floor) {
-  document.getElementById('floorTitle').innerText = `Floor: ${floor}`;
-  document.getElementById('floorImagePlaceholder').innerText = `[Image for ${floor}]`;
 }
 </script>
 
