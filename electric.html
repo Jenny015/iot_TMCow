@@ -8,8 +8,21 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif;}
+    #background {
+      position: absolute;
+      width: 1000px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #ccc;
+      z-index: -1;
+    }
+    #canvas {
+          position: relative;
+          z-index: 1;
+          display: block;
+        }
+    </style>
 </head>
 <body class="w3-light-grey">
 
@@ -54,10 +67,90 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:70px;">
-
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-bolt"></i> Electric Monitor</b></h5>
+      </header>
+      <hr>
+      <div class="w3-row">
+        <div class="w3-bar-block w3-col" style="width:10%">
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L8</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-level-up fa-fw"></i> L7</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L6</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L5</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L4</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L3</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L2</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L1</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> LG</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> UG</a>
+  
+        </div>
+        <div class="w3-container w3-col" style="width:80%">
+            <!-- Floor Content -->
+            <img id="background" src="img/hospital-floor-plan-invert1.png" alt="Background">
+            <canvas id="canvas"></canvas>
+        </div>
 </div>
 
 <script>
+const paths = {
+  point1s: [[190, 147], [210, 153], [232, 161],[240, 178], [240, 192], [240, 210], [240, 210], [240, 210], [240, 210], [240, 192], [240, 192],[240, 178], [232, 161], [210, 153], [190, 147], [190, 147], [190, 147], [190, 147], [190, 147]],
+  point2: [[170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397]],
+  point3: [[368, 352], [376, 340], [384, 328], [392, 319], [396, 310], [398, 292], [399, 276], [401, 270], [402, 264], [406, 265], [410, 266], [414, 267], [419, 268], [419, 268], [419, 268], [419, 268], [419, 268], [419, 268], [419, 268]],
+  point4: [[440, 89], [440, 105], [440, 121], [440, 143], [441, 167], [420, 167], [400, 168], [380, 169], [358, 169], [348, 170], [338, 171], [328, 172], [321, 172], [324, 182], [328, 192], [336, 210], [342, 228], [336, 238], [330, 248]],
+  point5: [[885, 379], [886, 339], [887, 299], [888, 279], [889, 259], [860, 259], [830, 259], [800, 260], [773, 260], [770, 285], [767, 310], [764, 325], [761, 335], [730, 333], [700, 331], [670, 330], [647, 330], [650, 345], [655, 360]],
+  point6s: [[561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73]]
+};
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const scale = window.devicePixelRatio || 1;
+canvas.width = 666 * scale;
+canvas.height = 325 * scale;
+
+// Current index to track the position in each path
+let intervalId;
+let index = 0;
+const bg = document.getElementById("background");
+
+function drawPoints() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Loop through each point in the paths
+  Object.entries(paths).forEach(([pointName, path]) => {
+    // Get the current location based on the index
+    const [x, y] = path[index];
+
+    // Draw the circle at the current location
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, Math.PI * 2); // Circle with radius 5
+    ctx.fillStyle = "blue";
+    ctx.fill();
+    ctx.closePath();
+  });
+
+  index++;
+  if(index > 3){
+    bg.src = "img/hospital-floor-plan.png"
+  }
+  if(index > 7){
+    bg.src = "img/hospital-floor-plan-invert2.png"
+  }
+  if(index > 15){
+    stopInterval();
+  }
+}
+
+function startInterval(){
+  intervalId = setInterval(drawPoints, 500);
+}
+
+function stopInterval(){
+  clearInterval(intervalId);
+}
+
+startInterval();
+
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 
