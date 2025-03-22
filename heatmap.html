@@ -54,10 +54,49 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:70px;">
-
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-map-o"></i> Heatmap of Equipments</b></h5>
+      </header>
+      <hr>
+      <div class="w3-container">
+        <select id="equipment" onchange="updateHeatmap()">
+            <option value="0">Please select an equipment</option>
+            <option value="wheelchair">Wheelchair </option>
+            <option value="bed">Bed</option>
+            <option value="dropStand">Intravenous stand</option>
+          </select>
+      </div>
+      <div class="w3-container">
+        <img id="heatmap">
+      </div>
 </div>
 
 <script>
+  function updateHeatmap() {
+    const selectElement = document.getElementById("equipment");
+    const imgElement = document.getElementById("heatmap");
+    const selectedValue = selectElement.value;
+
+    // Map selected values to image file paths
+    const imageMap = {
+      wheelchair: "img/heatmap-wheelchair.png",
+      bed: "img/heatmap-bed.png",
+      dropStand: "img/heatmap-dropStand.png"
+    };
+
+    // Update the 'src' attribute if the selected value exists in the imageMap
+    if (imageMap[selectedValue]) {
+      imgElement.style.display = 'block';
+      imgElement.src = imageMap[selectedValue];
+      imgElement.alt = selectedValue; // Update the alt attribute for accessibility
+    } else {
+      // Handle default case (e.g., no valid equipment selected)
+      imgElement.src = ""; // Clear the image
+      imgElement.style.display = 'none';
+      imgElement.alt = "No equipment selected";
+    }
+  }
+
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 
