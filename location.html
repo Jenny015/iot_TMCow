@@ -54,31 +54,32 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif;}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:70px;">
-    <div class="w3-container w3-row w3-quarter">
-        <div class="w3-bar-block">
-          <a href="#" onclick="showFloor('L8')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L8</a>
-          <a href="#" onclick="showFloor('L7')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L7</a>
-          <a href="#" onclick="showFloor('L6')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L6</a>
-          <a href="#" onclick="showFloor('L5')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L5</a>
-          <a href="#" onclick="showFloor('L4')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L4</a>
-          <a href="#" onclick="showFloor('L3')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L3</a>
-          <a href="#" onclick="showFloor('L2')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L2</a>
-          <a href="#" onclick="showFloor('L1')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L1</a>
-          <a href="#" onclick="showFloor('UG')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> UG</a>
-          <a href="#" onclick="showFloor('LG')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-building"></i> LG</a><br><br>
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-map-o"></i> Hospital Floor Plan</b></h5>
+      </header>
+      <hr>
+    <div class="w3-row">
+        <div class="w3-bar-block w3-col" style="width:10%">
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L8</a><br><br>
+          <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-level-up fa-fw"></i> L7</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L6</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L5</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L4</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L3</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L2</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> L1</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> LG</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up fa-fw"></i> UG</a>
+
         </div>
-    </div>
-    <div class="w3-container w3-row w3-threequarter">
-        <header class="w3-container" style="padding-top:22px">
-            <h5><b><i class="fa fa-map-o"></i> Hospital Floor Plan</b></h5>
-          </header>
-        
-          <!-- Floor Content -->
-          <div id="floorContent" class="w3-container">
-            <h5 id="floorTitle">Select a Floor</h5>
-            <div class="floor-image" id="floorImagePlaceholder">[Floor Plan Placeholder]</div>
-            <p>Additional details about this floor will appear here. For example, departments, facilities, or key information.</p>
-          </div>
+        <div class="w3-container w3-col" style="width:80%">
+              <!-- Floor Content -->
+              <div id="floorContent" class="w3-container">
+                <div class="floor-image" id="floorImagePlaceholder">
+                    <img src="img/hospital-floor-plan.png" width="100%">
+                </div>
+              </div>
+        </div>
     </div>
 </div>
 
