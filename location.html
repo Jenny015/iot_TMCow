@@ -111,18 +111,7 @@ canvas.height = 325 * scale;
 // Current index to track the position in each path
 let intervalId;
 let index = 0;
-function startDrawPointsInterval() {
-  if(index <= 15){
-    intervalId = setInterval(drawPoints, 500);
-  }
-}
 
-// Function to stop the interval
-function stopDrawPointsInterval() {
-  clearInterval(intervalId);
-}
-
-// Function to draw all points at the current index
 function drawPoints() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -162,11 +151,21 @@ function drawPoints() {
   });
 
   index++;
+  if(index > 15){
+    stopInterval();
+  }
 }
 
-startDrawPointsInterval();
+function startInterval(){
+  intervalId = setInterval(drawPoints, 500);
+}
+
+function stopInterval(){
+  clearInterval(intervalId);
+}
 
 
+startInterval();
 // Sidebar toggle functions
 var mySidebar = document.getElementById("mySidebar");
 var overlayBg = document.getElementById("myOverlay");
