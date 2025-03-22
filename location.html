@@ -9,84 +9,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif;}
-.floor-image {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  background-image: url("img/hospital-floor-plan.png");
+#background {
+  position: absolute;
+  width: 1000px;
   background-size: cover;
   background-position: center;
   border: 1px solid #ccc;
-  overflow: hidden;
+  z-index: -1;
 }
-.moving-circle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: gray;
-  border-radius: 50%;
-}
-.red-circle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
-}
-
-/* Animation for gray circles */
-@keyframes moveCircle1 {
-  0% { top: 10%; left: 10%; }
-  25% { top: 50%; left: 20%; }
-  50% { top: 70%; left: 60%; }
-  75% { top: 30%; left: 80%; }
-  100% { top: 10%; left: 10%; }
-}
-@keyframes moveCircle2 {
-  0% { top: 20%; left: 30%; }
-  25% { top: 60%; left: 40%; }
-  50% { top: 80%; left: 70%; }
-  75% { top: 40%; left: 50%; }
-  100% { top: 20%; left: 30%; }
-}
-@keyframes moveCircle3 {
-  0% { top: 30%; left: 20%; }
-  25% { top: 50%; left: 70%; }
-  50% { top: 60%; left: 40%; }
-  75% { top: 20%; left: 10%; }
-  100% { top: 30%; left: 20%; }
-}
-@keyframes moveCircle4 {
-  0% { top: 40%; left: 40%; }
-  25% { top: 80%; left: 20%; }
-  50% { top: 50%; left: 80%; }
-  75% { top: 10%; left: 60%; }
-  100% { top: 40%; left: 40%; }
-}
-@keyframes moveCircle5 {
-  0% { top: 50%; left: 50%; }
-  25% { top: 70%; left: 80%; }
-  50% { top: 20%; left: 30%; }
-  75% { top: 10%; left: 10%; }
-  100% { top: 50%; left: 50%; }
-}
-
-/* Animation for red circle */
-@keyframes moveRedCircle {
-  0% { top: 15%; left: 15%; }
-  25% { top: 55%; left: 25%; }
-  50% { top: 75%; left: 65%; }
-  75% { top: 35%; left: 85%; }
-  100% { top: 15%; left: 15%; }
-}
-
-/* Assign animations */
-#circle1 { animation: moveCircle1 280s linear infinite; }
-#circle2 { animation: moveCircle2 290s linear infinite; }
-#circle3 { animation: moveCircle3 250s linear infinite; }
-#circle4 { animation: moveCircle4 300s linear infinite; }
-#circle5 { animation: moveCircle5 250s linear infinite; }
-#redCircle { animation: moveRedCircle 260s linear infinite; }
+#canvas {
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
 </style>
 </head>
 <body class="w3-light-grey">
@@ -152,22 +87,86 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif;}
         </div>
         <div class="w3-container w3-col" style="width:80%">
             <!-- Floor Content -->
-            <div id="floorContent" class="w3-container">
-                <div class="floor-image" id="floorImagePlaceholder">
-                    <!-- Moving circles -->
-                    <div class="moving-circle" id="circle1"></div>
-                    <div class="moving-circle" id="circle2"></div>
-                    <div class="moving-circle" id="circle3"></div>
-                    <div class="moving-circle" id="circle4"></div>
-                    <div class="moving-circle" id="circle5"></div>
-                    <!-- Red circle -->
-                    <div class="red-circle" id="redCircle"></div>
-                </div>
-            </div>
+            <img id="background" src="img/hospital-floor-plan.png" alt="Background">
+            <canvas id="canvas"></canvas>
         </div>
 </div>
 
 <script>
+  const paths = {
+  point1s: [[190, 147], [210, 153], [232, 161],[240, 178], [240, 192], [240, 210], [240, 210], [240, 210], [240, 210], [240, 192], [240, 192],[240, 178], [232, 161], [210, 153], [190, 147], [190, 147], [190, 147], [190, 147], [190, 147]],
+  point2: [[170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397], [170, 397]],
+  point3: [[368, 352], [376, 340], [384, 328], [392, 319], [396, 310], [398, 292], [399, 276], [401, 270], [402, 264], [406, 265], [410, 266], [414, 267], [419, 268], [419, 268], [419, 268], [419, 268], [419, 268], [419, 268], [419, 268]],
+  point4: [[440, 89], [440, 105], [440, 121], [440, 143], [441, 167], [420, 167], [400, 168], [380, 169], [358, 169], [348, 170], [338, 171], [328, 172], [321, 172], [324, 182], [328, 192], [336, 210], [342, 228], [336, 238], [330, 248]],
+  point5: [[885, 379], [886, 339], [887, 299], [888, 279], [889, 259], [860, 259], [830, 259], [800, 260], [773, 260], [770, 285], [767, 310], [764, 325], [761, 335], [730, 333], [700, 331], [670, 330], [647, 330], [650, 345], [655, 360]],
+  point6s: [[561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73], [561, 73]]
+};
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const scale = window.devicePixelRatio || 1;
+canvas.width = 666 * scale;
+canvas.height = 325 * scale;
+
+// Current index to track the position in each path
+let intervalId;
+let index = 0;
+function startDrawPointsInterval() {
+  if(index <= 15){
+    intervalId = setInterval(drawPoints, 500);
+  }
+}
+
+// Function to stop the interval
+function stopDrawPointsInterval() {
+  clearInterval(intervalId);
+}
+
+// Function to draw all points at the current index
+function drawPoints() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Loop through each point in the paths
+  Object.entries(paths).forEach(([pointName, path]) => {
+    // Get the current location based on the index
+    const [x, y] = path[index];
+
+    // Draw the circle at the current location
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, Math.PI * 2); // Circle with radius 5
+    if(pointName.endsWith("s")){
+      ctx.fillStyle = "green";
+      ctx.lineWidth = 5;
+    } else {
+      ctx.fillStyle = "grey";
+    }
+
+    if(pointName == "point1s" && index >= 9){
+      ctx.fillStyle = "green";
+    } else if((pointName == "point1s" && index >= 5) || (pointName == "point2" && index >= 12)){
+      ctx.fillStyle = "red";
+    } else if ((pointName == "point1s" && index >= 2) || (pointName == "point2" && index < 12)){
+      ctx.fillStyle = "yellow";
+    }
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
+    ctx.closePath();
+
+    if(index == 5){
+      window.alert("Patient about to leave at L7 - A701");
+    }
+    if(index == 12){
+      window.alert("Patient stay too long (45 mins) at L7 - A703 Toilet");
+    }
+  });
+
+  index++;
+}
+
+startDrawPointsInterval();
+
+
 // Sidebar toggle functions
 var mySidebar = document.getElementById("mySidebar");
 var overlayBg = document.getElementById("myOverlay");
