@@ -26,7 +26,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <i class="fa fa-user-circle-o fa-5x" class="w3-margin-right"></i>
     </div>
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>Medical staff</strong></span><br>
+      <span>Welcome, <strong>Admin</strong></span><br>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -62,74 +62,62 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-half">
-      <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><img src="img/baby.png" width="50px"></div>
+      <div class="w3-container w3-green w3-padding-16">
+        <div class="w3-left"><i class="fa fa-server w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>23</h3>
+          <h3>99.9%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Infant</h4>
+        <h4>Server Uptime</h4>
       </div>
     </div>
     <div class="w3-half">
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>102</h3>
+          <h3>52</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Inpatient</h4>
+        <h4>Active staff</h4>
       </div>
     </div>
   </div>
 
   <div class="w3-panel">
-    <h5>Alert within an hour</h5>
+    <h5>Login Records</h5>
     <table class="w3-table w3-striped w3-white">
       <thead>
-        <tr class="w3-purple"><th colspan="2">Short Discription</th><th>Location</th><th>Time</th><th>Status</th></tr>
+        <tr class="w3-purple"><th colspan="1">User</th><th>Role</th><th>Login Time</th><th>Status</th></tr>
       </thead>
         <tr>
-        <td><img src="img/leaving-yellow.png" height="18px"></td>
-        <td>Patient about to leave</td>
-        <td>L7 - Ward A706</td>
-        <td><i>3 mins</i></td>
-        <td id="alertRow"><butto class="w3-button w3-purple" onclick="handleAlert()">Handle</button></td>
+        <td>John Doe</td>
+        <td>Doctor</td>
+        <td><i>08:45 AM</i></td>
+        <td id="alertRow"><butto class="w3-button w3-green">Active</td>
       </tr>
       <tr>
-        <td><i class="fa fa-hourglass-half w3-text-red w3-large"></i></td>
-        <td>Patient stay too long (1 hour)</td>
-        <td>L8 - Toilet A811</td>
-        <td><i>10 mins</i></td>
-        <td><a class="w3-button w3-black w3-disabled">Handled</a></td>
+        <td>Jane Smith</td>
+        <td>Nurse</td>
+        <td><i>09:00 AM</i></td>
+        <td><a class="w3-button w3-green">Active</a></td>
       </tr>
       <tr>
-        <td><img src="img/baby-red.png" height="18px"></td>
-        <td>Infant not check out (100 mins)</td>
-        <td>L7 - Neonatal Unit</td>
-        <td><i>12 mins</i></td>
-        <td><a class="w3-button w3-black w3-disabled">Handled</a></td>
+        <td>Michael Brown</td>
+        <td>Admin</td>
+        <td><i>09:15 AM</i></td>
+        <td><a class="w3-button w3-green">Active</a></td>
       </tr>
       <tr>
-        <td><img src="img/baby-red.png" height="18px"></td>
-        <td>Infant not check out (100 mins)</td>
-        <td>L7 - Neonatal Unit</td>
-        <td><i>12 mins</i></td>
-        <td><a class="w3-button w3-black w3-disabled">Handled</a></td>
+        <td>Emily White</td>
+        <td>Operational Staff</td>
+        <td><i>09:30 AM</i></td>
+        <td><a class="w3-button w3-green">Active</a></td>
       </tr>
       <tr>
-        <td><img src="img/leaving-red.png" height="18px"></td>
-        <td>Patient about to leave</td>
-        <td>LG - Reception</td>
-        <td><i>23 mins</i></td>
-        <td><a class="w3-button w3-black w3-disabled">Handled</a></td>
-      </tr>
-      <tr>
-        <td><i class="fa fa-hourglass-half w3-text-yellow w3-large"></i></td>
-        <td>Patient stay too long (15 mins)</td>
-        <td>L7 - Staris</td>
-        <td><i>32 mins</i></td>
-        <td><a class="w3-button w3-black w3-disabled">Handled</a></td>
+        <td>David Wilson</td>
+        <td>Operational Staff</td>
+        <td><i>09:45 AM</i></td>
+        <td><a class="w3-button w3-black w3-disabled">Inactive</a></td>
       </tr>
     </table>
   </div>
