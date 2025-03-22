@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hospital Floor Plan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.floor-image {width: 100%; height: 400px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; color: #777; font-size: 24px;}
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-teal w3-large" style="z-index:4">
+  <span class="w3-bar-item">Hospital Logo</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <h5>Floor Selection</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="showFloor('LG')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-building"></i> Lower Ground (LG)</a>
+    <a href="#" onclick="showFloor('L1')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 1</a>
+    <a href="#" onclick="showFloor('L2')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 2</a>
+    <a href="#" onclick="showFloor('L3')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 3</a>
+    <a href="#" onclick="showFloor('L4')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 4</a>
+    <a href="#" onclick="showFloor('L5')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 5</a>
+    <a href="#" onclick="showFloor('L6')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 6</a>
+    <a href="#" onclick="showFloor('L7')" class="w3-bar-item w3-button w3-padding"><i class="fa fa-level-up"></i> Level 7</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px; margin-top:50px;">
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-map-o"></i> Hospital Floor Plan</b></h5>
+  </header>
+
+  <!-- Floor Content -->
+  <div id="floorContent" class="w3-container">
+    <h5 id="floorTitle">Select a Floor</h5>
+    <div class="floor-image" id="floorImagePlaceholder">[Floor Plan Placeholder]</div>
+    <p>Additional details about this floor will appear here. For example, departments, facilities, or key information.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <p>Powered by Hospital Management | <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+</div>
+
+<script>
+// Function to display floor details
+function showFloor(floor) {
+  document.getElementById('floorTitle').innerText = `Floor: ${floor}`;
+  document.getElementById('floorImagePlaceholder').innerText = `[Image for ${floor}]`;
+}
+</script>
+
+</body>
+</html>
